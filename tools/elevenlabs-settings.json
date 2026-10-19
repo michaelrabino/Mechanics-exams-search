@@ -1,0 +1,7 @@
+{
+  "voice_id": "9ztfq2gddPmPeeVe1Jkk",
+  "model_id": "eleven_v4",
+  "output_format": "mp3_44100_64",
+  "stability": 0.5,
+  "similarity_boost": 0.75
+}

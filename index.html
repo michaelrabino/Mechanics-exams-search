@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ארכיון בחינות מכניקה 20215</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of question sheets under a graph-paper masthead; controls stick together as a single toolbar. */
+:root{
+  --paper:#f4f6f8; --sheet:#ffffff; --ink:#1b2230; --muted:#5b6577; --rule:#dde2ea; --grid:#e3e8ef;
+  --accent:#1f45a6; --accent-soft:#e6ecfa; --pencil:#b26a00; --plate:#ffffff;
+  --band:#17337d; --band-ink:#ffffff; --band-sub:#c9d6ff; --sun:#ffc145;
+  --mech:#1f45a6; --mech-soft:#e8edfa; --rel:#b26a00; --rel-soft:#fdf2dc;
+  --c1:var(--accent); --c1s:var(--accent-soft); --c2:var(--accent); --c2s:var(--accent-soft); --c3:var(--accent); --c3s:var(--accent-soft);
+  --c4:var(--accent); --c4s:var(--accent-soft); --c5:var(--accent); --c5s:var(--accent-soft); --c6:var(--accent); --c6s:var(--accent-soft);
+  --display:"Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --body:"Assistant", "Arial Hebrew", "Segoe UI", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#12161e; --sheet:#1a202b; --ink:#e6eaf2; --muted:#9aa4b6; --rule:#2c3442; --grid:#1d2430;
+  --accent:#8fb0ff; --accent-soft:#233154; --pencil:#ffc145; --plate:#f4f6f8;
+  --band:#1a2a5c; --band-ink:#ffffff; --band-sub:#b5c4f0; --sun:#ffc145;
+  --mech:#8fb0ff; --mech-soft:#1f2b4a; --rel:#ffc145; --rel-soft:#3a2f17; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#12161e; --sheet:#1a202b; --ink:#e6eaf2; --muted:#9aa4b6; --rule:#2c3442; --grid:#1d2430;
+  --accent:#8fb0ff; --accent-soft:#233154; --pencil:#ffc145; --plate:#f4f6f8;
+  --band:#1a2a5c; --band-ink:#ffffff; --band-sub:#b5c4f0; --sun:#ffc145;
+  --mech:#8fb0ff; --mech-soft:#1f2b4a; --rel:#ffc145; --rel-soft:#3a2f17; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7;direction:rtl}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+
+header.mast{background:var(--band);color:var(--band-ink);border-bottom:6px solid var(--sun)}
+header.mast .wrap{padding-block:40px 28px;display:grid;gap:10px}
+.code{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--sun)}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0;text-wrap:balance;color:var(--band-ink)}
+h1 .hl{color:var(--sun)}
+.sub{color:var(--band-sub);margin:0;max-width:62ch}
+.stats{margin:0;font-family:var(--mono);font-size:13px;color:var(--sun);letter-spacing:.03em}
+header.mast .ghost{background:transparent;color:var(--band-ink);border-color:var(--band-sub)}
+header.mast .ghost:hover{border-color:var(--sun);color:var(--sun)}
+details.about summary{color:var(--sun)!important}
+details.about ol{color:var(--band-ink)!important}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+button,select,input{font:inherit;color:inherit}
+.ghost{background:var(--sheet);border:1px solid var(--rule);border-radius:999px;padding:4px 14px;font-size:14px;cursor:pointer}
+.ghost:hover{border-color:var(--accent)}
+
+details.about{margin-top:6px;max-width:66ch}
+details.about summary{cursor:pointer;color:var(--accent);font-weight:600;width:fit-content}
+details.about ol{margin:8px 0 0;padding-inline-start:22px;color:var(--ink)}
+
+.tools{background:var(--paper);border-bottom:1px solid var(--rule)}
+@media (min-width:760px) and (min-height:700px){.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5}}
+.tools .wrap{padding-block:14px;display:grid;gap:10px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row.sel{grid-template-columns:repeat(2,minmax(0,1fr)) auto}
+@media (max-width:620px){.row,.row.sel{grid-template-columns:1fr}}
+.field{display:grid;gap:2px;min-width:0}
+.field label{font-size:12px;font-family:var(--mono);color:var(--muted);letter-spacing:.04em}
+.field input,.field select{width:100%;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:8px 12px}
+.field input:focus,.field select:focus,button:focus-visible,.fig:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.pdf{align-self:end;white-space:nowrap;text-decoration:none;color:var(--accent);font-weight:600;border:1px solid var(--accent);border-radius:8px;padding:8px 14px;background:var(--sheet)}
+.pdf:hover{background:var(--accent-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:2px 11px;cursor:pointer}
+.chip{border-color:var(--cs,var(--rule));background:var(--cs,var(--sheet));color:var(--cc,var(--ink))}
+.chip span{opacity:.7;font-size:11px}
+.chip:hover{border-color:var(--cc,var(--accent))}
+.chip[aria-pressed="true"]{background:var(--cc,var(--accent));border-color:var(--cc,var(--accent));color:var(--sheet)}
+.k1{--cc:var(--c1);--cs:var(--c1s)} .k2{--cc:var(--c2);--cs:var(--c2s)} .k3{--cc:var(--c3);--cs:var(--c3s)}
+.k4{--cc:var(--c4);--cs:var(--c4s)} .k5{--cc:var(--c5);--cs:var(--c5s)} .k6{--cc:var(--c6);--cs:var(--c6s)}
+
+main .wrap{padding-block:24px 60px;display:grid;gap:22px}
+.status{color:var(--muted);font-size:15px;margin:0}
+.examhead{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;border-bottom:3px solid var(--sun);padding-bottom:6px}
+.examhead h2{color:var(--band)}
+:root[data-theme="dark"] .examhead h2{color:var(--sun)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .examhead h2{color:var(--sun)}}
+.examhead h2{font-family:var(--display);font-size:26px;margin:0}
+.examhead span{color:var(--muted);font-size:15px}
+
+.q{--pc:var(--mech);--ps:var(--mech-soft);background:var(--sheet);border:1px solid var(--rule);border-top:5px solid var(--pc);border-radius:6px;padding:22px clamp(16px,4vw,30px);display:grid;gap:14px;min-width:0}
+.q.rel{--pc:var(--rel);--ps:var(--rel-soft)}
+.qhead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.qnum{font-family:var(--display);font-weight:700;font-size:20px;background:var(--pc);color:var(--sheet);border-radius:6px;padding:0 12px}
+.part{font-size:13px;font-weight:700;color:var(--pc);background:var(--ps);border-radius:999px;padding:0 10px}
+.qtitle{font-weight:700;font-size:18px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.03em;display:flex;flex-wrap:wrap;gap:4px 12px}
+.meta .pts{color:var(--pencil)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;background:var(--cs);color:var(--cc);border-radius:4px;padding:0 8px;border:0;cursor:pointer;font-weight:600}
+.qtext{margin:0}
+.figs{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;min-width:0}
+.fig{background:var(--plate);border:1px solid var(--rule);border-radius:4px;padding:10px;cursor:zoom-in;max-width:100%}
+.fig img{display:block;max-height:340px;width:auto;max-width:100%;margin:0 auto}
+ol.items{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.items li{display:grid;grid-template-columns:2em 1fr auto;gap:6px;align-items:baseline}
+ol.items .l{font-weight:700;color:var(--pc)}
+ol.items .p{font-family:var(--mono);font-size:12px;color:var(--pencil);white-space:nowrap}
+ol.items li>span{min-width:0}
+.solbtn{justify-self:start;background:var(--pc);border:1px solid var(--pc);color:var(--sheet);border-radius:6px;padding:5px 16px;cursor:pointer;font-weight:700}
+.solbtn:hover{filter:brightness(1.08)}
+.sol{background:var(--ps);border-radius:6px;padding:14px 18px;min-width:0}
+.sol h4{font-family:var(--display);font-size:18px;margin:14px 0 2px;color:var(--pc)}
+.sol h4:first-child{margin-top:0}
+.sol p{margin:4px 0}
+.sol .note{font-size:13px;color:var(--muted);margin-top:12px}
+.audio{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border:1px dashed var(--pc);border-radius:8px;padding:8px 12px;background:var(--sheet)}
+.audio .lbl{font-weight:700;color:var(--pc);font-size:14px;margin-inline-end:auto}
+.abtn{background:var(--ps);border:1px solid var(--pc);color:var(--pc);border-radius:6px;padding:3px 12px;cursor:pointer;font-weight:700;font-size:14px}
+.abtn:hover{filter:brightness(1.05)}
+.abtn[disabled]{opacity:.45;cursor:default}
+.audio select{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;font-size:14px}
+.atext{flex-basis:100%;background:var(--ps);border-radius:6px;padding:10px 14px;font-size:16px}
+.atext p{margin:4px 0;transition:background .2s}
+.atext p.now{background:var(--sheet);outline:2px solid var(--sun);border-radius:4px}
+.anote{flex-basis:100%;font-size:13px;color:var(--muted);margin:0}
+.topbtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+#editmode[aria-pressed="true"]{background:var(--sun);color:#1b2230;border-color:var(--sun)}
+.editbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--rel-soft);border:1px solid var(--rel);border-radius:8px;padding:8px 12px;font-size:14px}
+.editbar b{margin-inline-end:auto}
+.dirty{color:var(--rel);font-weight:600}
+.aedit{flex-basis:100%;display:grid;gap:6px}
+.aedit textarea{width:100%;min-height:260px;font:inherit;font-size:16px;line-height:1.6;background:var(--sheet);color:var(--ink);border:1px solid var(--pc);border-radius:6px;padding:10px;resize:vertical}
+.aedit .hint{font-size:13px;color:var(--muted);margin:0}
+.aedit .btns{display:flex;flex-wrap:wrap;gap:8px}
+.audio audio.mp3{flex:1 1 260px;min-width:0;height:40px}
+.qedit{margin-inline-start:auto;font-size:13px}
+.qe{display:grid;gap:10px;min-width:0}
+.qe label{display:grid;gap:4px;font-weight:600;font-size:14px;color:var(--pc)}
+.qe input,.qe textarea{font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:6px 10px;width:100%;min-width:0}
+.qe textarea{font-family:var(--mono);font-size:13.5px;line-height:1.55;resize:vertical;direction:rtl}
+.qe .hint{font-size:13px;color:var(--muted);margin:0}
+.qe code{font-family:var(--mono);font-size:12px;background:var(--ps);padding:0 4px;border-radius:3px;direction:ltr;unicode-bidi:embed}
+.qe-items{display:grid;gap:8px}
+.lbl2{font-weight:700;font-size:14px;color:var(--pc)}
+.qe-item{display:grid;grid-template-columns:3.2em 4.5em auto 1fr;gap:6px;align-items:start}
+.qe-item .qe-t{grid-column:1/-1}
+.qe .btns{display:flex;flex-wrap:wrap;gap:8px}
+.qe-prev{border:1px dashed var(--pc);border-radius:8px;padding:10px 14px;display:grid;gap:8px;min-width:0}
+.qe-prevbody{display:grid;gap:10px;min-width:0}
+.qe-prevbody .qtitle{margin:0}
+.q.has-audio .qnum::after{content:" 🔊";font-size:14px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+mjx-container{direction:ltr}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1100px)}
+dialog::backdrop{background:rgba(10,14,22,.75)}
+dialog img{display:block;max-width:100%;max-height:88vh;background:#fff;border-radius:4px}
+dialog button{position:absolute;top:8px;left:8px;background:#fff;color:#1b2230;border:0;border-radius:999px;width:34px;height:34px;font-size:20px;cursor:pointer}
+
+footer{border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+footer .wrap{padding-block:22px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="mast">
+  <div class="wrap">
+    <div class="topbar">
+      <span class="code">20215 · האוניברסיטה הפתוחה</span>
+      <span class="topbtns"><button class="ghost" id="editmode" type="button" aria-pressed="false">✎ מצב עריכה</button>
+      <button class="ghost" id="theme" type="button">מצב כהה / בהיר</button></span>
+    </div>
+    <h1>ארכיון בחינות <span class="hl">מכניקה</span></h1>
+    <p class="sub">שאלות מבחינות הגמר בקורס מכניקה (20215), עם האיורים המקוריים ופתרונות מלאים. כל בחינה: ארבע שאלות מכניקה (לבחירה, 3 מתוך 4) ושאלת חובה ביחסות.</p>
+    <p class="stats" id="stats"></p>
+    <details class="about">
+      <summary>איך משתמשים?</summary>
+      <ol>
+        <li><b>חיפוש:</b> שורה אחת מחפשת בניסוח השאלות, והשנייה בגוף הפתרונות.</li>
+        <li><b>עיון לפי בחינה:</b> בחרו סמסטר ומועד, וכל שאלות הבחינה יוצגו.</li>
+        <li><b>נושאים:</b> לחיצה על נושא מציגה את כל השאלות בנושא הזה מכל הבחינות.</li>
+        <li><b>פתרון:</b> מתחת לכל שאלה יש כפתור שחושף פתרון מלא. נסו לפתור לבד קודם.</li>
+        <li><b>איורים:</b> לחיצה על איור מגדילה אותו.</li>
+        <li><b>עריכה:</b> בכפתור "מצב עריכה" אפשר לתקן שאלות, פתרונות והסברים קוליים, ולהוריד קובץ מעודכן לתיקיית האתר.</li>
+        <li><b>הסבר קולי:</b> בשאלות שמסומנות ב-🔊 יש הסבר מפורט שהדפדפן מקריא. אפשר גם להציג אותו כטקסט.</li>
+      </ol>
+    </details>
+  </div>
+</header>
+
+<section class="tools" aria-label="חיפוש וסינון">
+  <div class="wrap">
+    <div class="row">
+      <div class="field"><label for="qsearch">חיפוש בשאלות</label><input id="qsearch" type="search" placeholder="למשל: קפיץ, טריז, חיכוך"></div>
+      <div class="field"><label for="ssearch">חיפוש בפתרונות</label><input id="ssearch" type="search" placeholder="למשל: שימור תנע זוויתי"></div>
+    </div>
+    <div class="row sel">
+      <div class="field"><label for="sem">סמסטר</label><select id="sem"></select></div>
+      <div class="field"><label for="moed">מועד</label><select id="moed"></select></div>
+      <a class="pdf" id="pdf" href="#" target="_blank" rel="noopener">הבחינה המקורית (PDF)</a>
+    </div>
+    <div class="chips" id="chips" aria-label="נושאים"></div>
+    <div class="editbar" id="editbar" hidden></div>
+  </div>
+</section>
+
+<main><div class="wrap" id="out"></div></main>
+
+<footer><div class="wrap">בהצלחה בבחינה. הפתרונות אינם רשמיים; אם מצאתם טעות, כדאי לבדוק מול חומרי הקורס.</div></footer>
+
+<dialog id="zoom"><button type="button" id="zclose" aria-label="סגירה">×</button><img id="zimg" alt=""></dialog>
+
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},startup:{typeset:false}};
+</script>
+<script src="exams.js"></script>
+<script src="exam-serializer.js"></script>
+<script src="audio.js"></script>
+<script src="audio-files.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script>
+(function(){
+const E=window.EXAMS||[];
+const $=id=>document.getElementById(id);
+const st={tag:null};
+const strip=h=>h.replace(/<[^>]+>/g,' ').replace(/\\[a-zA-Z]+/g,' ').replace(/[{}\\^_$]/g,' ');
+const norm=s=>strip(s).toLowerCase().replace(/\s+/g,' ');
+const A=window.AUDIO=window.AUDIO||{};
+const AF=window.AUDIO_FILES||{};
+const fnv=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}return h.toString(16).padStart(8,'0');};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let drafts={}; try{drafts=JSON.parse(localStorage.getItem('audioDrafts')||'{}')||{};}catch(e){}
+// drafts that already match the files (the updated file was installed) are cleared automatically
+Object.keys(drafts).forEach(k=>{ if(JSON.stringify(drafts[k]||[])===JSON.stringify(A[k]||[])) delete drafts[k]; });
+try{localStorage.setItem('audioDrafts',JSON.stringify(drafts));}catch(e){}
+Object.keys(drafts).forEach(k=>{ if(drafts[k]&&drafts[k].length) A[k]=drafts[k]; else delete A[k]; });
+st.edit=false; try{st.edit=localStorage.getItem('audioEdit')==='1';}catch(e){}
+const QF=['title','tags','text','items','solution'];
+let qdrafts={}; try{qdrafts=JSON.parse(localStorage.getItem('examDrafts')||'{}')||{};}catch(e){}
+const ORIG={};
+E.forEach(ex=>ex.questions.forEach(q=>{ const k=ex.id+'-'+q.num; ORIG[k]=JSON.parse(JSON.stringify(QF.reduce((o,f)=>(o[f]=q[f],o),{}))); if(qdrafts[k]&&QF.every(f=>JSON.stringify(qdrafts[k][f])===JSON.stringify(ORIG[k][f]))) delete qdrafts[k]; if(qdrafts[k]) QF.forEach(f=>{ if(qdrafts[k][f]!==undefined) q[f]=JSON.parse(JSON.stringify(qdrafts[k][f])); }); }));
+try{localStorage.setItem('examDrafts',JSON.stringify(qdrafts));}catch(e){}
+function indexQ(q){ q._q=norm(q.title+' '+q.text+' '+q.items.map(i=>i.t).join(' ')+' '+q.tags.join(' ')); q._s=norm(q.solution); }
+E.forEach(ex=>ex.questions.forEach(q=>{q._ex=ex;q._q=norm(q.title+' '+q.text+' '+q.items.map(i=>i.t).join(' ')+' '+q.tags.join(' '));q._s=norm(q.solution);}));
+
+// theme
+const root=document.documentElement;
+$('theme').onclick=()=>{
+  const dark=root.dataset.theme? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme=dark?'light':'dark';
+  try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
+};
+try{const t=localStorage.getItem('theme'); if(t) root.dataset.theme=t;}catch(e){}
+
+// selectors
+const sems=[...new Set(E.map(e=>e.semester))].sort().reverse();
+$('sem').innerHTML=sems.map(s=>`<option value="${s}">סמסטר ${s}</option>`).join('');
+function fillMoed(){
+  const list=E.filter(e=>e.semester===$('sem').value).sort((a,b)=>(b.iso||'').localeCompare(a.iso||''));
+  $('moed').innerHTML=list.map(e=>`<option value="${e.id}">מועד ${e.moed} · ${e.date}</option>`).join('');
+}
+fillMoed();
+
+// tags
+let tagCount={}, tags=[];
+function recountTags(){
+  tagCount={}; E.forEach(ex=>ex.questions.forEach(q=>q.tags.forEach(t=>tagCount[t]=(tagCount[t]||0)+1)));
+  tags=Object.keys(tagCount).sort((a,b)=>tagCount[b]-tagCount[a]||a.localeCompare(b,'he'));
+}
+recountTags();
+const kc=t=>'k'+(tags.indexOf(t)%6+1);
+let moreTags=false;
+function drawChips(){
+  const shown=moreTags?tags:tags.filter((t,i)=>i<10||t===st.tag);
+  $('chips').innerHTML=shown.map(t=>`<button type="button" class="chip ${kc(t)}" aria-pressed="${st.tag===t}" data-tag="${t}">${t} <span aria-hidden="true">${tagCount[t]}</span></button>`).join('')+(tags.length>10?`<button type="button" class="chip" id="more">${moreTags?'פחות נושאים':'עוד '+(tags.length-10)+' נושאים'}</button>`:'');
+}
+$('chips').onclick=e=>{if(e.target.closest('#more')){moreTags=!moreTags;drawChips();return;}const b=e.target.closest('[data-tag]'); if(!b)return; setTag(b.dataset.tag);};
+function setTag(t){st.tag=st.tag===t?null:t; drawChips(); render();}
+
+function aBox(key,au){
+  if(!au&&!st.edit) return '';
+  const f=AF[key], fresh=!!(au&&f&&f.hash===fnv(au.join('\n\n'))), mp3=fresh?f.file:'';
+  const stale=au&&f&&!fresh;
+  return `<div class="audio" data-key="${key}"><span class="lbl">🔊 הסבר קולי${drafts[key]?' <span class="dirty">· נערך</span>':''}</span>
+      ${au&&mp3?`<audio class="mp3" controls preload="none" src="${mp3}"></audio>
+      <select data-a="rate" aria-label="מהירות הקראה"><option value="0.85">איטי</option><option value="1" selected>רגיל</option><option value="1.2">מהיר</option></select>
+      `:''}${au&&!mp3?`<button type="button" class="abtn" data-a="play">▶ השמע</button>
+      <button type="button" class="abtn" data-a="stop" hidden>■ עצור</button>
+      <select data-a="rate" aria-label="מהירות הקראה"><option value="0.85">איטי</option><option value="1" selected>רגיל</option><option value="1.2">מהיר</option></select>
+`:''}${au?`      <button type="button" class="abtn" data-a="text" aria-expanded="false">הצג כטקסט</button>`:'<span class="anote" style="flex-basis:auto">אין עדיין הסבר לשאלה הזאת.</span>'}
+      ${st.edit?`<button type="button" class="abtn edit" data-a="edit">✎ ${au?'ערוך':'כתוב הסבר'}</button>`:''}
+      <p class="anote"${stale?'':' hidden'}>${stale?'הטקסט השתנה מאז שהוקלט הקול הטבעי, ולכן ההסבר מוקרא בקול הדפדפן. כדי לעדכן את ההקלטה, הריצו שוב את tools\\generate-audio.bat.':''}</p>
+      <div class="atext" hidden>${(au||[]).map(t=>`<p>${esc(t)}</p>`).join('')}</div></div>`;
+}
+function qHTML(q,showExam){
+  const ex=q._ex, total=q.pts||q.items.reduce((s,i)=>s+(i.pts||0),0);
+  const key=ex.id+'-'+q.num, au=A[key];
+  return `<article class="q${q.part==='יחסות'?' rel':''}${au?' has-audio':''}" id="q-${ex.id}-${q.num}">
+    <div class="qhead"><span class="qnum">שאלה ${q.num}</span><span class="qtitle">${q.title}</span><span class="part">${q.part}</span>${qdrafts[key]?'<span class="dirty">· נערך</span>':''}${st.edit?`<button type="button" class="abtn qedit" data-qedit="${key}">✎ ערוך שאלה</button>`:''}</div>
+    <div class="meta"><span class="pts">${total} נק'</span>${showExam?`<span>סמסטר ${ex.semester} · מועד ${ex.moed} · ${ex.date}</span>`:''}</div>
+    <div class="tags">${q.tags.map(t=>`<button type="button" class="tag ${kc(t)}" data-tag="${t}">${t}</button>`).join('')}</div>
+    <p class="qtext">${q.text}</p>
+    ${[].concat(q.fig||[]).length?`<div class="figs">${[].concat(q.fig).map((f,i,a)=>`<button type="button" class="fig" data-zoom="${f}" aria-label="הגדלת האיור"><img src="${f}" alt="איור${a.length>1?' '+(i+1):''} לשאלה ${q.num}" loading="lazy"></button>`).join('')}</div>`:''}
+    <ol class="items">${q.items.map(i=>`<li><span class="l">${i.l}.</span><span>${i.t}</span><span class="p">${i.pts?i.pts+" נק'":''}</span></li>`).join('')}</ol>
+    <button type="button" class="solbtn" aria-expanded="false">▼ הצג פתרון</button>
+    <div class="sol" hidden>${q.solution}</div>
+    ${aBox(key,au)}
+  </article>`;
+}
+
+function render(){
+  if(typeof stopAll==='function') stopAll();
+  const qs=norm($('qsearch').value).trim(), ss=norm($('ssearch').value).trim();
+  const out=$('out'); let html='';
+  const ex=E.find(e=>e.id===$('moed').value);
+  if(qs||ss||st.tag){
+    const all=E.flatMap(e=>e.questions).filter(q=>(!qs||q._q.includes(qs))&&(!ss||q._s.includes(ss))&&(!st.tag||q.tags.includes(st.tag)));
+    const what=[qs&&`"${$('qsearch').value.trim()}" בשאלות`,ss&&`"${$('ssearch').value.trim()}" בפתרונות`,st.tag&&`נושא: ${st.tag}`].filter(Boolean).join(' · ');
+    html=`<p class="status">${all.length?`${all.length} שאלות תואמות`:'לא נמצאו שאלות תואמות'} (${what}). <button type="button" class="ghost" id="clear">ניקוי</button></p>`+all.map(q=>qHTML(q,true)).join('');
+  } else if(ex){
+    html=`<div class="examhead"><h2>מועד ${ex.moed}</h2><span>סמסטר ${ex.semester} · ${ex.date} · ${ex.heDate}</span></div>`+ex.questions.map(q=>qHTML(q,false)).join('');
+  }
+  out.innerHTML=html;
+  if(ex){$('pdf').href=ex.pdf;}
+  const c=$('clear'); if(c) c.onclick=()=>{$('qsearch').value='';$('ssearch').value='';st.tag=null;drawChips();render();};
+  typeset(out);
+}
+function typeset(el){ if(window.MathJax&&MathJax.typesetPromise){ MathJax.typesetClear&&MathJax.typesetClear([el]); MathJax.typesetPromise([el]).catch(()=>{});} }
+
+$('out').addEventListener('click',e=>{
+  const qe=e.target.closest('[data-qedit]'); if(qe){ openQEditor(qe.dataset.qedit); return; }
+  const ab=e.target.closest('.audio [data-a]'); if(ab&&ab.tagName==='BUTTON'){onAudio(ab.closest('.audio'),ab.dataset.a); return;}
+  const b=e.target.closest('.solbtn');
+  if(b){const s=b.nextElementSibling, open=s.hidden; s.hidden=!open; b.setAttribute('aria-expanded',open); b.textContent=open?'▲ הסתר פתרון':'▼ הצג פתרון'; return;}
+  const t=e.target.closest('.tag'); if(t){setTag(t.dataset.tag); window.scrollTo({top:0}); return;}
+  const f=e.target.closest('[data-zoom]'); if(f){$('zimg').src=f.dataset.zoom; $('zimg').alt=f.querySelector('img').alt; $('zoom').showModal();}
+});
+
+// ---- spoken explanations (Web Speech API) ----
+const synth=window.speechSynthesis;
+const sp={box:null,chunks:[],i:0,playing:false,tok:0};
+function heVoice(){ if(!synth)return null; const v=synth.getVoices(); return v.find(x=>/^(he|iw)/i.test(x.lang)&&/natural|online|google/i.test(x.name))||v.find(x=>/^(he|iw)/i.test(x.lang))||null; }
+if(synth&&synth.addEventListener) synth.addEventListener('voiceschanged',()=>{});
+function chunk(paras){ const out=[]; paras.forEach((p,pi)=>{ (p.match(/[^.!?]+[.!?]*/g)||[p]).forEach(s=>{s=s.trim(); if(s) out.push({s,pi});}); }); return out; }
+function mark(){ if(!sp.box)return; sp.box.querySelectorAll('.atext p').forEach((p,k)=>p.classList.toggle('now',sp.playing&&sp.chunks[sp.i]&&sp.chunks[sp.i].pi===k)); }
+function ui(box,playing,paused){ const pb=box.querySelector('[data-a=play]'), sb=box.querySelector('[data-a=stop]'); pb.textContent=playing?'❚❚ השהה':(paused?'▶ המשך':'▶ השמע'); sb.hidden=!(playing||paused); }
+function speakNext(){
+  if(!sp.playing||sp.i>=sp.chunks.length){ if(sp.i>=sp.chunks.length) stopAll(); return; }
+  const tok=++sp.tok, u=new SpeechSynthesisUtterance(sp.chunks[sp.i].s), v=heVoice();
+  u.lang='he-IL'; if(v) u.voice=v; u.rate=+sp.box.querySelector('[data-a=rate]').value||1;
+  u.onend=()=>{ if(tok!==sp.tok||!sp.playing) return; sp.i++; mark(); speakNext(); };
+  u.onstart=()=>{ sp.started=true; };
+  u.onerror=e=>{ if(tok!==sp.tok||!e||e.error==='interrupted'||e.error==='canceled') return; note(sp.box,`ההקראה נכשלה (שגיאה: ${e.error}). ${hint()}`); };
+  try{ synth.resume(); }catch(e){}
+  synth.speak(u); mark();
+}
+function note(box,t){ if(!box)return; const n=box.querySelector('p.anote'); if(n){n.hidden=false;n.textContent=t;} }
+function hint(){
+  const ua=navigator.userAgent, edge=/Edg\//.test(ua), win=/Windows/.test(ua);
+  if(win&&!edge) return 'הפתרון הפשוט ביותר ב-Windows: לפתוח את האתר בדפדפן Edge, שיש בו קולות עבריים מובנים (Hila, Avri). אפשרות אחרת: הגדרות Windows ← זמן ושפה ← שפה ואזור ← הוספת עברית עם "המרת טקסט לדיבור", ואז לפתוח מחדש את הדפדפן.';
+  if(win) return 'ב-Edge: בדקו שהקולות העבריים זמינים (חיבור לאינטרנט נדרש לקולות Online).';
+  return 'בטלפון: הגדרות ← נגישות / שפה ← המרת טקסט לדיבור, ובחרו עברית.';
+}
+function voicesReady(){ return new Promise(r=>{ if(synth.getVoices().length) return r(); let done=false; const f=()=>{ if(!done){done=true;r();} }; synth.addEventListener&&synth.addEventListener('voiceschanged',f,{once:true}); setTimeout(f,1500); }); }
+function stopAll(){ sp.tok++; if(synth) synth.cancel(); if(sp.box){ sp.playing=false; mark(); ui(sp.box,false,false);} sp.box=null; sp.i=0; }
+function onAudio(box,a){
+  if(a==='edit'){ openEditor(box); return; }
+  if(a==='text'){ const t=box.querySelector('.atext'), b=box.querySelector('[data-a=text]'); t.hidden=!t.hidden; b.setAttribute('aria-expanded',!t.hidden); b.textContent=t.hidden?'הצג כטקסט':'הסתר טקסט'; return; }
+  if(!synth){ const n=box.querySelector('.anote'); n.hidden=false; n.textContent='הדפדפן הזה לא תומך בהקראה. אפשר לקרוא את ההסבר כטקסט.'; return; }
+  if(a==='stop'){ stopAll(); return; }
+  if(a==='play'){
+    if(sp.box===box&&sp.playing){ sp.playing=false; sp.tok++; synth.cancel(); mark(); ui(box,false,true); return; } // pause (resume from same sentence)
+    if(sp.box!==box){ stopAll(); sp.box=box; sp.i=0; sp.chunks=chunk([...box.querySelectorAll('.atext p')].map(p=>p.textContent)); }
+    synth.cancel(); sp.playing=true; sp.started=false; ui(box,true,false);
+    voicesReady().then(()=>{
+      const v=heVoice(), all=synth.getVoices();
+      if(!all.length) note(box,'הדפדפן לא מצא אף קול להקראה. '+hint());
+      else if(!v) note(box,`לא נמצא קול עברי בדפדפן הזה (נמצאו ${all.length} קולות בשפות אחרות), ולכן ייתכן שלא יישמע כלום. ${hint()}`);
+      else note(box,`קול: ${v.name}`);
+      const t=sp.tok+1; setTimeout(()=>{ if(sp.box===box&&sp.playing&&!sp.started&&sp.tok>=t) note(box,'ההקראה לא התחילה. בדקו שהרמקול לא מושתק. '+hint()); },3500);
+      setTimeout(speakNext,80);
+    });
+  }
+}
+$('out').addEventListener('play',e=>{ if(e.target.tagName!=='AUDIO')return; stopAll(); document.querySelectorAll('audio.mp3').forEach(a=>{ if(a!==e.target) a.pause(); }); },true);
+$('out').addEventListener('change',e=>{ const r=e.target.closest('[data-a=rate]'); const m=r&&r.closest('.audio').querySelector('audio.mp3'); if(m){ m.playbackRate=+r.value; m.defaultPlaybackRate=+r.value; } });
+$('out').addEventListener('change',e=>{ const s=e.target.closest('[data-a=rate]'); if(s&&sp.box===s.closest('.audio')&&sp.playing){ synth.cancel(); speakNext(); } });
+
+// ---- editing explanations ----
+function saveDrafts(){ try{localStorage.setItem('audioDrafts',JSON.stringify(drafts));}catch(e){} }
+function fileText(){
+  const keys=Object.keys(A).sort();
+  return '// הסברים קוליים: מפתח = מזהה בחינה-מספר שאלה. כל איבר במערך הוא פסקה אחת.\nwindow.AUDIO = {\n'+
+    keys.map(k=>JSON.stringify(k)+': [\n'+A[k].map(t=>JSON.stringify(t)).join(',\n')+'\n]').join(',\n')+'\n};\n';
+}
+function drawEditbar(){
+  const b=$('editbar'), n=Object.keys(drafts).length, nq=Object.keys(qdrafts).length;
+  $('editmode').setAttribute('aria-pressed',st.edit);
+  b.hidden=!st.edit;
+  if(!st.edit) return;
+  b.innerHTML=`<b>מצב עריכה${nq?` · ${nq} שאלות נערכו`:''}${n?` · ${n} הסברים נערכו`:''}</b>
+    ${nq?`<button type="button" class="abtn" id="dlq">⬇ הורד exams.js מעודכן</button><button type="button" class="abtn" id="cpq">העתק exams.js</button>`:''}
+    ${n?`<button type="button" class="abtn" id="dl">⬇ הורד audio.js מעודכן</button><button type="button" class="abtn" id="cp">העתק audio.js</button>`:''}
+    <button type="button" class="abtn" id="undo" ${n||nq?'':'disabled'}>בטל את כל השינויים</button>
+    <span class="anote" id="emsg" style="flex-basis:100%">${n||nq?'השינויים שמורים בדפדפן הזה. כדי שיגיעו לאתר, הורידו את הקובץ והחליפו בו את הקובץ שבתיקיית האתר.':'לחצו "ערוך שאלה" או "ערוך" ליד הסבר קולי.'}</span>`;
+  if(n){ $('dl').onclick=()=>download('audio',fileText()); $('cp').onclick=()=>copyFile('audio',fileText()); }
+  if(nq){ $('dlq').onclick=()=>download('exams',examsText()); $('cpq').onclick=()=>copyFile('exams',examsText()); }
+  $('undo').onclick=()=>{ if(!confirmUndo()) return; drafts={}; qdrafts={}; saveDrafts(); saveQDrafts(); location.reload(); };
+}
+function saveQDrafts(){ try{localStorage.setItem('examDrafts',JSON.stringify(qdrafts));}catch(e){} }
+function examsText(){ return window.serializeExams(E); }
+let undoArm=0;
+function confirmUndo(){ const now=Date.now(); if(now-undoArm<4000) return true; undoArm=now; $('emsg').textContent='לחצו שוב תוך כמה שניות כדי לבטל את כל השינויים.'; return false; }
+async function download(name,txt){
+  const msg=$('emsg');
+  let dl=null; try{ if(window.claude&&claude.use) dl=await claude.use('downloads'); }catch(e){}
+  if(dl){
+    try{ await dl.save({filename:name+'.txt',data:txt}); msg.textContent=`הקובץ נשמר בשם ${name}.txt. שנו את שמו ל-${name}.js והחליפו בו את הקובץ שבתיקיית האתר.`; }
+    catch(e){ msg.textContent=e&&e.code==='declined'?'ההורדה בוטלה.':'לא ניתן להוריד כאן. אפשר להשתמש בכפתור ההעתקה.'; }
+    return;
+  }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/javascript'})); a.download=name+'.js';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
+  msg.textContent=`הקובץ ${name}.js הורד. החליפו בו את הקובץ שבתיקיית האתר.`;
+}
+async function copyFile(name,txt){
+  const msg=$('emsg');
+  try{ await navigator.clipboard.writeText(txt); msg.textContent=`תוכן הקובץ הועתק. פתחו את ${name}.js בתיקיית האתר, מחקו את כל התוכן והדביקו.`; }
+  catch(e){ msg.textContent='ההעתקה נכשלה בדפדפן הזה. נסו את כפתור ההורדה.'; }
+}
+
+// ---- question editor ----
+function findQ(key){ for(const ex of E) for(const q of ex.questions) if(ex.id+'-'+q.num===key) return q; return null; }
+function itemRow(it){
+  return `<div class="qe-item"><input class="qe-l" value="${esc(it.l||'')}" aria-label="אות הסעיף"><input class="qe-p" type="number" min="0" value="${it.pts!=null?esc(it.pts):''}" aria-label="נקודות" placeholder="נק'"><button type="button" class="abtn" data-qe="delitem" aria-label="מחיקת סעיף">×</button><textarea class="qe-t" dir="rtl" rows="3">${esc(it.t||'')}</textarea></div>`;
+}
+function openQEditor(key){
+  const q=findQ(key), art=document.getElementById('q-'+key); if(!q||!art) return;
+  stopAll();
+  art.innerHTML=`<div class="qe">
+    <div class="qhead"><span class="qnum">שאלה ${q.num}</span><b>עריכת שאלה</b></div>
+    <p class="hint">נוסחאות ב-LaTeX: <code>\( ... \)</code> בתוך שורה, <code>\[ ... \]</code> בשורה נפרדת. עיצוב: <code>&lt;br&gt;</code> שורה חדשה, <code>&lt;b&gt;</code> הדגשה, בפתרון <code>&lt;h4&gt;</code> כותרת סעיף ו-<code>&lt;p&gt;</code> פסקה. התצוגה המקדימה מתעדכנת תוך כדי הקלדה.</p>
+    <label>כותרת<input class="qe-title" value="${esc(q.title)}"></label>
+    <label>נושאים (מופרדים בפסיקים)<input class="qe-tags" value="${esc(q.tags.join(', '))}"></label>
+    <label>נוסח השאלה<textarea class="qe-text" dir="rtl" rows="6">${esc(q.text)}</textarea></label>
+    <div class="qe-items"><span class="lbl2">סעיפים</span>${q.items.map(itemRow).join('')}</div>
+    <button type="button" class="abtn" data-qe="additem">+ הוסף סעיף</button>
+    <label>פתרון<textarea class="qe-sol" dir="rtl" rows="16">${esc(q.solution)}</textarea></label>
+    <div class="btns"><button type="button" class="abtn" data-qe="save">שמור</button><button type="button" class="abtn" data-qe="cancel">ביטול</button>${qdrafts[key]?'<button type="button" class="abtn" data-qe="revert">החזר לנוסח המקורי</button>':''}</div>
+    <div class="qe-prev"><span class="lbl2">תצוגה מקדימה</span><div class="qe-prevbody"></div></div>
+  </div>`;
+  const ed=art.querySelector('.qe');
+  const collect=()=>({
+    title:ed.querySelector('.qe-title').value.trim(),
+    tags:ed.querySelector('.qe-tags').value.split(/[,،]/).map(s=>s.trim()).filter(Boolean),
+    text:ed.querySelector('.qe-text').value,
+    items:[...ed.querySelectorAll('.qe-item')].map(r=>{ const o={l:r.querySelector('.qe-l').value.trim(), t:r.querySelector('.qe-t').value}; const pv=r.querySelector('.qe-p').value; if(pv!=='') o.pts=+pv; return o; }),
+    solution:ed.querySelector('.qe-sol').value
+  });
+  let tm=null;
+  const preview=()=>{ clearTimeout(tm); tm=setTimeout(()=>{ const c=collect(), box=ed.querySelector('.qe-prevbody');
+    box.innerHTML=`<p class="qtitle">${c.title}</p><p class="qtext">${c.text}</p><ol class="items">${c.items.map(i=>`<li><span class="l">${esc(i.l)}.</span><span>${i.t}</span><span class="p">${i.pts!=null?i.pts+" נק'":''}</span></li>`).join('')}</ol><div class="sol">${c.solution}</div>`;
+    typeset(box); },450); };
+  ed.addEventListener('input',preview); preview();
+  ed.addEventListener('click',e=>{
+    const b=e.target.closest('[data-qe]'); if(!b) return;
+    const a=b.dataset.qe;
+    if(a==='additem'){ const n=ed.querySelectorAll('.qe-item').length; ed.querySelector('.qe-items').insertAdjacentHTML('beforeend',itemRow({l:'אבגדהוזחטי'[n]||'',t:''})); preview(); return; }
+    if(a==='delitem'){ b.closest('.qe-item').remove(); preview(); return; }
+    if(a==='cancel'){ render(); scrollToQ(key); return; }
+    if(a==='revert'){ if(b.dataset.armed!=='1'){ b.dataset.armed='1'; b.textContent='לחצו שוב כדי לחזור למקור'; return; }
+      QF.forEach(f=>q[f]=JSON.parse(JSON.stringify(ORIG[key][f]))); delete qdrafts[key]; saveQDrafts(); indexQ(q); recountTags(); drawChips(); drawEditbar(); render(); scrollToQ(key); return; }
+    if(a==='save'){
+      const c=collect();
+      if(!c.title){ ed.querySelector('.qe-title').focus(); return; }
+      QF.forEach(f=>q[f]=c[f]); indexQ(q);
+      if(JSON.stringify(QF.map(f=>ORIG[key][f]))===JSON.stringify(QF.map(f=>q[f]))) delete qdrafts[key]; else qdrafts[key]=c;
+      saveQDrafts(); recountTags(); drawChips(); drawEditbar(); render(); scrollToQ(key);
+    }
+  });
+  art.scrollIntoView({block:'start'});
+}
+function scrollToQ(key){ const a=document.getElementById('q-'+key); if(a) a.scrollIntoView({block:'start'}); }
+function openEditor(box){
+  const key=box.dataset.key, au=A[key]||[];
+  if(box.querySelector('.aedit')) return;
+  stopAll();
+  const d=document.createElement('div'); d.className='aedit';
+  d.innerHTML=`<p class="hint">כל פסקה מופרדת בשורה ריקה. כדי שהקראה תישמע טוב: כתבו משתנים ונוסחאות במילים ("אֶם", "חצי אֶם וִי בריבוע"), והוסיפו ניקוד למילים שמוקראות לא נכון.</p>
+    <textarea dir="rtl" aria-label="טקסט ההסבר"></textarea>
+    <div class="btns"><button type="button" class="abtn" data-e="save">שמור</button><button type="button" class="abtn" data-e="test">▶ השמע את הטיוטה</button><button type="button" class="abtn" data-e="cancel">ביטול</button>
+    ${A[key]?'<button type="button" class="abtn" data-e="del">מחק הסבר</button>':''}</div>`;
+  d.querySelector('textarea').value=au.join('\n\n');
+  box.appendChild(d); d.querySelector('textarea').focus();
+  d.onclick=e=>{
+    const b=e.target.closest('[data-e]'); if(!b) return;
+    const paras=d.querySelector('textarea').value.split(/\n\s*\n/).map(s=>s.replace(/\s*\n\s*/g,' ').trim()).filter(Boolean);
+    if(b.dataset.e==='cancel'){ stopAll(); d.remove(); return; }
+    if(b.dataset.e==='test'){ if(!synth||!paras.length) return; stopAll(); sp.box=box; sp.i=0; sp.chunks=chunk(paras); sp.playing=true; speakNext(); return; }
+    if(b.dataset.e==='del'){ if(b.dataset.armed!=='1'){ b.dataset.armed='1'; b.textContent='לחצו שוב למחיקה'; return; } paras.length=0; }
+    stopAll();
+    if(paras.length) A[key]=paras; else delete A[key];
+    drafts[key]=paras; saveDrafts(); drawEditbar(); render();
+    const nb=document.querySelector(`.audio[data-key="${key}"]`); if(nb) nb.scrollIntoView({block:'nearest'});
+  };
+}
+$('editmode').onclick=()=>{ st.edit=!st.edit; try{localStorage.setItem('audioEdit',st.edit?'1':'0');}catch(e){} drawEditbar(); render(); };
+
+$('zclose').onclick=()=>$('zoom').close();
+$('zoom').addEventListener('click',e=>{if(e.target===$('zoom'))$('zoom').close();});
+
+$('sem').onchange=()=>{fillMoed();render();};
+$('moed').onchange=render;
+let tm; ['qsearch','ssearch'].forEach(id=>$(id).addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(render,200);}));
+
+$('stats').textContent=`${E.length} בחינות · ${E.reduce((n,e)=>n+e.questions.length,0)} שאלות · ${E.reduce((n,e)=>n+e.questions.filter(q=>q.fig).length,0)} עם איורים`;
+drawChips(); drawEditbar(); render();
+if(window.MathJax&&MathJax.startup&&MathJax.startup.promise){MathJax.startup.promise.then(()=>typeset($('out')));}
+})();
+</script>
+
+</body>
+</html>
