@@ -291,8 +291,8 @@ recountTags();
 const kc=t=>'k'+(tags.indexOf(t)%6+1);
 let moreTags=false;
 function drawChips(){
-  const shown=moreTags?tags:tags.filter((t,i)=>i<10||t===st.tag);
-  $('chips').innerHTML=shown.map(t=>`<button type="button" class="chip ${kc(t)}" aria-pressed="${st.tag===t}" data-tag="${t}">${t} <span aria-hidden="true">${tagCount[t]}</span></button>`).join('')+(tags.length>10?`<button type="button" class="chip" id="more">${moreTags?'פחות נושאים':'עוד '+(tags.length-10)+' נושאים'}</button>`:'');
+  const LIM=tags.length<=16?tags.length:10, shown=moreTags?tags:tags.filter((t,i)=>i<LIM||t===st.tag);
+  $('chips').innerHTML=shown.map(t=>`<button type="button" class="chip ${kc(t)}" aria-pressed="${st.tag===t}" data-tag="${t}">${t} <span aria-hidden="true">${tagCount[t]}</span></button>`).join('')+(tags.length>LIM?`<button type="button" class="chip" id="more">${moreTags?'פחות נושאים':'עוד '+(tags.length-LIM)+' נושאים'}</button>`:'');
 }
 $('chips').onclick=e=>{if(e.target.closest('#more')){moreTags=!moreTags;drawChips();return;}const b=e.target.closest('[data-tag]'); if(!b)return; setTag(b.dataset.tag);};
 function setTag(t){st.tag=st.tag===t?null:t; drawChips(); render();}
