@@ -234,7 +234,14 @@ let drafts={}; try{drafts=JSON.parse(localStorage.getItem('audioDrafts')||'{}')|
 Object.keys(drafts).forEach(k=>{ if(JSON.stringify(drafts[k]||[])===JSON.stringify(A[k]||[])) delete drafts[k]; });
 try{localStorage.setItem('audioDrafts',JSON.stringify(drafts));}catch(e){}
 Object.keys(drafts).forEach(k=>{ if(drafts[k]&&drafts[k].length) A[k]=drafts[k]; else delete A[k]; });
-st.edit=false; try{st.edit=localStorage.getItem('audioEdit')==='1';}catch(e){}
+// Editing is offered only off the public site, or to a browser that opened it once with ?edit (?edit=off turns that off again).
+const EDITOR=(()=>{ let ok=!/\.github\.io$/i.test(location.hostname);
+  try{ const q=new URLSearchParams(location.search).get('edit');
+    if(q==='off') localStorage.removeItem('editor'); else if(q!==null) localStorage.setItem('editor','1');
+    if(localStorage.getItem('editor')==='1') ok=true; }catch(e){}
+  return ok; })();
+if(!EDITOR) $('editmode').hidden=true;
+st.edit=false; try{st.edit=EDITOR&&localStorage.getItem('audioEdit')==='1';}catch(e){}
 const QF=['title','tags','text','items','solution'];
 let qdrafts={}; try{qdrafts=JSON.parse(localStorage.getItem('examDrafts')||'{}')||{};}catch(e){}
 const ORIG={};
