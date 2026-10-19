@@ -125,6 +125,17 @@ ol.items li>span{min-width:0}
 #editmode[aria-pressed="true"]{background:var(--sun);color:#1b2230;border-color:var(--sun)}
 .editbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--rel-soft);border:1px solid var(--rel);border-radius:8px;padding:8px 12px;font-size:14px}
 .editbar b{margin-inline-end:auto}
+.tagpanel{margin-top:8px;border:1px solid var(--rel);border-radius:8px;padding:8px 12px;background:var(--sheet)}
+.tagpanel .anote{margin:0 0 8px}
+.tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 14px;max-height:34vh;overflow:auto}
+.trow{display:flex;gap:6px;align-items:center}
+.trow input{flex:1;min-width:0;font:inherit;padding:2px 6px;border:1px solid var(--rule);border-radius:6px;background:var(--sheet);color:var(--ink)}
+.tcount{font-size:12px;opacity:.7;min-width:2ch;text-align:center}
+.trow .abtn{padding:1px 8px;font-size:12px}
+.etag{display:inline-flex;align-items:center;gap:2px;cursor:default}
+.untag{border:0;background:none;color:inherit;cursor:pointer;font-size:14px;line-height:1;padding:0 2px;opacity:.7}
+.untag:hover{opacity:1}
+.addtag{font:inherit;font-size:13px;width:110px;padding:1px 8px;border:1px dashed var(--rule);border-radius:999px;background:var(--sheet);color:var(--ink)}
 .dirty{color:var(--rel);font-weight:600}
 .aedit{flex-basis:100%;display:grid;gap:6px}
 .aedit textarea{width:100%;min-height:260px;font:inherit;font-size:16px;line-height:1.6;background:var(--sheet);color:var(--ink);border:1px solid var(--pc);border-radius:6px;padding:10px;resize:vertical}
@@ -201,6 +212,8 @@ footer .wrap{padding-block:22px}
     </div>
     <div class="chips" id="chips" aria-label="נושאים"></div>
     <div class="editbar" id="editbar" hidden></div>
+    <div class="tagpanel" id="tagpanel" hidden></div>
+    <datalist id="alltags"></datalist>
   </div>
 </section>
 
@@ -305,7 +318,7 @@ function qHTML(q,showExam){
   return `<article class="q${q.part==='יחסות'?' rel':''}${au?' has-audio':''}" id="q-${ex.id}-${q.num}">
     <div class="qhead"><span class="qnum">שאלה ${q.num}</span><span class="qtitle">${q.title}</span><span class="part">${q.part}</span>${qdrafts[key]?'<span class="dirty">· נערך</span>':''}${st.edit?`<button type="button" class="abtn qedit" data-qedit="${key}">✎ ערוך שאלה</button>`:''}</div>
     <div class="meta"><span class="pts">${total} נק'</span>${showExam?`<span>סמסטר ${ex.semester} · מועד ${ex.moed} · ${ex.date}</span>`:''}</div>
-    <div class="tags">${q.tags.map(t=>`<button type="button" class="tag ${kc(t)}" data-tag="${t}">${t}</button>`).join('')}</div>
+    <div class="tags">${q.tags.map(t=>st.edit?`<span class="tag ${kc(t)} etag">${t}<button type="button" class="untag" data-untag="${esc(t)}" data-key="${key}" aria-label="הסרת הנושא ${esc(t)}">×</button></span>`:`<button type="button" class="tag ${kc(t)}" data-tag="${t}">${t}</button>`).join('')}${st.edit?`<input class="addtag" data-key="${key}" list="alltags" placeholder="+ נושא" aria-label="הוספת נושא לשאלה">`:''}</div>
     <p class="qtext">${q.text}</p>
     ${[].concat(q.fig||[]).length?`<div class="figs">${[].concat(q.fig).map((f,i,a)=>`<button type="button" class="fig" data-zoom="${f}" aria-label="הגדלת האיור"><img src="${f}" alt="איור${a.length>1?' '+(i+1):''} לשאלה ${q.num}" loading="lazy"></button>`).join('')}</div>`:''}
     <ol class="items">${q.items.map(i=>`<li><span class="l">${i.l}.</span><span>${i.t}</span><span class="p">${i.pts?i.pts+" נק'":''}</span></li>`).join('')}</ol>
@@ -403,18 +416,41 @@ function fileText(){
 function drawEditbar(){
   const b=$('editbar'), n=Object.keys(drafts).length, nq=Object.keys(qdrafts).length;
   $('editmode').setAttribute('aria-pressed',st.edit);
-  b.hidden=!st.edit;
+  b.hidden=!st.edit; drawTagList();
   if(!st.edit) return;
   b.innerHTML=`<b>מצב עריכה${nq?` · ${nq} שאלות נערכו`:''}${n?` · ${n} הסברים נערכו`:''}</b>
     ${nq?`<button type="button" class="abtn" id="dlq">⬇ הורד exams.js מעודכן</button><button type="button" class="abtn" id="cpq">העתק exams.js</button>`:''}
     ${n?`<button type="button" class="abtn" id="dl">⬇ הורד audio.js מעודכן</button><button type="button" class="abtn" id="cp">העתק audio.js</button>`:''}
+    <button type="button" class="abtn" id="tagsbtn" aria-expanded="${tagPanel}">🏷 ניהול נושאים (${tags.length})</button>
     <button type="button" class="abtn" id="undo" ${n||nq?'':'disabled'}>בטל את כל השינויים</button>
     <span class="anote" id="emsg" style="flex-basis:100%">${n||nq?'השינויים שמורים בדפדפן הזה. כדי שיגיעו לאתר, הורידו את הקובץ והחליפו בו את הקובץ שבתיקיית האתר.':'לחצו "ערוך שאלה" או "ערוך" ליד הסבר קולי.'}</span>`;
   if(n){ $('dl').onclick=()=>download('audio',fileText()); $('cp').onclick=()=>copyFile('audio',fileText()); }
   if(nq){ $('dlq').onclick=()=>download('exams',examsText()); $('cpq').onclick=()=>copyFile('exams',examsText()); }
+  $('tagsbtn').onclick=()=>{ tagPanel=!tagPanel; drawEditbar(); drawTagList(); };
   $('undo').onclick=()=>{ if(!confirmUndo()) return; drafts={}; qdrafts={}; saveDrafts(); saveQDrafts(); location.reload(); };
 }
 function saveQDrafts(){ try{localStorage.setItem('examDrafts',JSON.stringify(qdrafts));}catch(e){} }
+// ---- topics ----
+function setTags(key,list){
+  const q=findQ(key); if(!q) return;
+  q.tags=[...new Set(list.map(s=>s.trim()).filter(Boolean))]; indexQ(q);
+  const cur=QF.reduce((o,f)=>(o[f]=JSON.parse(JSON.stringify(q[f])),o),{});
+  if(JSON.stringify(QF.map(f=>ORIG[key][f]))===JSON.stringify(QF.map(f=>cur[f]))) delete qdrafts[key]; else qdrafts[key]=cur;
+}
+function tagsChanged(){ saveQDrafts(); recountTags(); if(st.tag&&!tagCount[st.tag]) st.tag=null; drawChips(); drawEditbar(); drawTagList(); }
+function eachQ(fn){ E.forEach(ex=>ex.questions.forEach(q=>fn(ex.id+'-'+q.num,q))); }
+function renameTag(from,to){ to=to.trim(); if(!to||to===from) return;
+  eachQ((k,q)=>{ if(q.tags.includes(from)) setTags(k,q.tags.map(t=>t===from?to:t)); });
+  if(st.tag===from) st.tag=to; tagsChanged(); render(); }
+function deleteTag(t){ eachQ((k,q)=>{ if(q.tags.includes(t)) setTags(k,q.tags.filter(x=>x!==t)); }); tagsChanged(); render(); }
+let tagPanel=false;
+function drawTagList(){
+  const dl=$('alltags'); if(dl) dl.innerHTML=tags.map(t=>`<option value="${esc(t)}">`).join('');
+  const p=$('tagpanel'); if(!p) return;
+  p.hidden=!(st.edit&&tagPanel); if(p.hidden) return;
+  p.innerHTML=`<p class="anote">כדי לשנות שם, ערכו אותו ולחצו Enter. כדי לאחד שני נושאים, תנו לאחד מהם בדיוק את השם של השני. "מחק" מסיר את הנושא מכל השאלות. בכל שאלה אפשר גם להסיר נושא ב-× ולהוסיף נושא בשדה "+ נושא".</p>
+    <div class="tlist">${tags.map(t=>`<div class="trow"><input value="${esc(t)}" data-old="${esc(t)}" list="alltags" aria-label="שם הנושא"><span class="tcount">${tagCount[t]}</span><button type="button" class="abtn" data-tdel="${esc(t)}">מחק</button></div>`).join('')}</div>`;
+}
 function examsText(){ return window.serializeExams(E); }
 let undoArm=0;
 function confirmUndo(){ const now=Date.now(); if(now-undoArm<4000) return true; undoArm=now; $('emsg').textContent='לחצו שוב תוך כמה שניות כדי לבטל את כל השינויים.'; return false; }
@@ -515,6 +551,20 @@ $('editmode').onclick=()=>{ st.edit=!st.edit; try{localStorage.setItem('audioEdi
 
 $('zclose').onclick=()=>$('zoom').close();
 $('zoom').addEventListener('click',e=>{if(e.target===$('zoom'))$('zoom').close();});
+// topic editing on each question and in the topic panel
+const keepPlace=(key,fn)=>{ const el=document.getElementById('q-'+key), y=el?el.getBoundingClientRect().top:0; fn(); const n=document.getElementById('q-'+key); if(n) window.scrollBy(0,n.getBoundingClientRect().top-y); };
+$('out').addEventListener('click',e=>{ const u=e.target.closest('[data-untag]'); if(!u) return; const k=u.dataset.key, q=findQ(k);
+  keepPlace(k,()=>{ setTags(k,q.tags.filter(t=>t!==u.dataset.untag)); tagsChanged(); render(); }); });
+function addTagFrom(inp){ const v=inp.value.trim(); if(!v) return; const k=inp.dataset.key, q=findQ(k);
+  keepPlace(k,()=>{ setTags(k,q.tags.concat(v.split(/[,،]/))); tagsChanged(); render(); });
+  const n=document.querySelector(`.addtag[data-key="${k}"]`); if(n) n.focus({preventScroll:true}); }
+$('out').addEventListener('keydown',e=>{ const i=e.target.closest('.addtag'); if(i&&e.key==='Enter'){ e.preventDefault(); addTagFrom(i); } });
+$('out').addEventListener('change',e=>{ const i=e.target.closest('.addtag'); if(i) addTagFrom(i); });
+$('tagpanel').addEventListener('keydown',e=>{ const i=e.target.closest('[data-old]'); if(i&&e.key==='Enter'){ e.preventDefault(); i.blur(); } });
+$('tagpanel').addEventListener('change',e=>{ const i=e.target.closest('[data-old]'); if(i) renameTag(i.dataset.old,i.value); });
+$('tagpanel').addEventListener('click',e=>{ const b=e.target.closest('[data-tdel]'); if(!b) return;
+  if(b.dataset.armed!=='1'){ b.dataset.armed='1'; b.textContent='בטוח?'; setTimeout(()=>{ if(b.isConnected){ b.dataset.armed=''; b.textContent='מחק'; } },4000); return; }
+  deleteTag(b.dataset.tdel); });
 
 $('sem').onchange=()=>{fillMoed();render();};
 $('moed').onchange=render;
