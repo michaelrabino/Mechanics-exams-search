@@ -1,4 +1,106 @@
 {
+    "2023b-89-1":  {
+                       "hash":  "521628a4",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-89-1.mp3?v=521628a4"
+                   },
+    "2023b-89-2":  {
+                       "hash":  "db1ebdce",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-89-2.mp3?v=db1ebdce"
+                   },
+    "2023b-93-1":  {
+                       "hash":  "b3e35b30",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-93-1.mp3?v=b3e35b30"
+                   },
+    "2023b-93-2":  {
+                       "hash":  "f2316aa2",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-93-2.mp3?v=f2316aa2"
+                   },
+    "2023b-93-3":  {
+                       "hash":  "78677f18",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-93-3.mp3?v=78677f18"
+                   },
+    "2023b-93-4":  {
+                       "hash":  "c0be7530",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-93-4.mp3?v=c0be7530"
+                   },
+    "2023b-93-5":  {
+                       "hash":  "1182078a",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023b-93-5.mp3?v=1182078a"
+                   },
+    "2023c-81-1":  {
+                       "hash":  "51ce6af9",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-81-1.mp3?v=51ce6af9"
+                   },
+    "2023c-81-2":  {
+                       "hash":  "7bbde42f",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-81-2.mp3?v=7bbde42f"
+                   },
+    "2023c-81-3":  {
+                       "hash":  "fa99a4d2",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-81-3.mp3?v=fa99a4d2"
+                   },
+    "2023c-81-4":  {
+                       "hash":  "2efd10e9",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-81-4.mp3?v=2efd10e9"
+                   },
+    "2023c-81-5":  {
+                       "hash":  "d2c09660",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-81-5.mp3?v=d2c09660"
+                   },
+    "2023c-92-1":  {
+                       "hash":  "30eef2e7",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-92-1.mp3?v=30eef2e7"
+                   },
+    "2023c-92-2":  {
+                       "hash":  "d33f61b9",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-92-2.mp3?v=d33f61b9"
+                   },
+    "2023c-92-3":  {
+                       "hash":  "9e991715",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-92-3.mp3?v=9e991715"
+                   },
+    "2023c-92-4":  {
+                       "hash":  "17bcc100",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-92-4.mp3?v=17bcc100"
+                   },
+    "2023c-92-5":  {
+                       "hash":  "9295da89",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2023c-92-5.mp3?v=9295da89"
+                   },
     "2024a-81-1":  {
                        "hash":  "077c0fc1",
                        "voice":  "9ztfq2gddPmPeeVe1Jkk",
@@ -10,6 +112,24 @@
                        "voice":  "9ztfq2gddPmPeeVe1Jkk",
                        "model":  "eleven_v4",
                        "file":  "audio/2024a-81-2.mp3?v=4caa974c"
+                   },
+    "2024a-81-3":  {
+                       "hash":  "354b42a5",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2024a-81-3.mp3?v=354b42a5"
+                   },
+    "2024a-81-4":  {
+                       "hash":  "c48ede7e",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2024a-81-4.mp3?v=c48ede7e"
+                   },
+    "2024a-81-5":  {
+                       "hash":  "77453b7d",
+                       "voice":  "9ztfq2gddPmPeeVe1Jkk",
+                       "model":  "eleven_v4",
+                       "file":  "audio/2024a-81-5.mp3?v=77453b7d"
                    },
     "2024a-85-1":  {
                        "hash":  "599c68a6",
