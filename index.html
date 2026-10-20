@@ -126,6 +126,8 @@ ol.items li>span{min-width:0}
 [hidden]{display:none!important}
 .editbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--rel-soft);border:1px solid var(--rel);border-radius:8px;padding:8px 12px;font-size:14px}
 .editbar b{margin-inline-end:auto}
+.elist{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.elist .ghost{font-size:13px;padding:1px 10px}
 .tagpanel{margin-top:8px;border:1px solid var(--rel);border-radius:8px;padding:8px 12px;background:var(--sheet)}
 .tagpanel .anote{margin:0 0 8px}
 .tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 14px;max-height:34vh;overflow:auto}
@@ -424,12 +426,18 @@ function drawEditbar(){
     ${n?`<button type="button" class="abtn" id="dl">⬇ הורד audio.js מעודכן</button><button type="button" class="abtn" id="cp">העתק audio.js</button>`:''}
     <button type="button" class="abtn" id="tagsbtn" aria-expanded="${tagPanel}">🏷 ניהול נושאים (${tags.length})</button>
     <button type="button" class="abtn" id="undo" ${n||nq?'':'disabled'}>בטל את כל השינויים</button>
+    ${n||nq?`<span class="elist">נערכו: ${[...Object.keys(qdrafts).map(k=>[k,'שאלה']),...Object.keys(drafts).map(k=>[k,'הסבר'])].sort().map(([k,w])=>`<button type="button" class="ghost" data-goto="${k}">${w} ${keyLabel(k)}</button>`).join('')}</span>`:''}
     <span class="anote" id="emsg" style="flex-basis:100%">${n||nq?'השינויים שמורים בדפדפן הזה. כדי שיגיעו לאתר, הורידו את הקובץ והחליפו בו את הקובץ שבתיקיית האתר.':'לחצו "ערוך שאלה" או "ערוך" ליד הסבר קולי.'}</span>`;
   if(n){ $('dl').onclick=()=>download('audio',fileText()); $('cp').onclick=()=>copyFile('audio',fileText()); }
   if(nq){ $('dlq').onclick=()=>download('exams',examsText()); $('cpq').onclick=()=>copyFile('exams',examsText()); }
   $('tagsbtn').onclick=()=>{ tagPanel=!tagPanel; drawEditbar(); drawTagList(); };
   $('undo').onclick=()=>{ if(!confirmUndo()) return; drafts={}; qdrafts={}; saveDrafts(); saveQDrafts(); location.reload(); };
 }
+function keyLabel(k){ const m=k.match(/^(.*)-(\d+)$/); const ex=m&&E.find(e=>e.id===m[1]); return ex?`${ex.semester} מועד ${ex.moed} ש' ${m[2]}`:k; }
+function gotoQ(k){ const m=k.match(/^(.*)-(\d+)$/), ex=m&&E.find(e=>e.id===m[1]); if(!ex) return;
+  $('qsearch').value=''; $('ssearch').value=''; st.tag=null; drawChips();
+  $('sem').value=ex.semester; fillMoed(); $('moed').value=ex.id; render(); [0,400,1200].forEach(t=>setTimeout(()=>scrollToQ(k),t)); }
+$('editbar').addEventListener('click',e=>{ const b=e.target.closest('[data-goto]'); if(b) gotoQ(b.dataset.goto); });
 function saveQDrafts(){ try{localStorage.setItem('examDrafts',JSON.stringify(qdrafts));}catch(e){} }
 // ---- topics ----
 function setTags(key,list){
@@ -524,7 +532,7 @@ function openQEditor(key){
   });
   art.scrollIntoView({block:'start'});
 }
-function scrollToQ(key){ const a=document.getElementById('q-'+key); if(a) a.scrollIntoView({block:'start'}); }
+function scrollToQ(key){ const a=document.getElementById('q-'+key); if(!a) return; const t=document.querySelector('.tools'), off=getComputedStyle(t).position==='sticky'?t.offsetHeight+8:0; window.scrollTo(0,a.getBoundingClientRect().top+window.scrollY-off); }
 function openEditor(box){
   const key=box.dataset.key, au=A[key]||[];
   if(box.querySelector('.aedit')) return;
