@@ -185,12 +185,15 @@ html.locked body>*:not(#gate){display:none!important}
 <script>
 // Simple password screen for the public site. It only hides the page: the files themselves stay reachable by direct link.
 (function(){
-  var HASH='dbbd7734374d7be7a2c356da48bce13138c566f13c88948640565ab57463bd76', SALT='mech20215:';
+  var HASH='5c4a9e982d5fee10c797dbd7a431ff032f01c5f0b9a0751a9f3029f0f886c357', SALT='mech20215:', ITER=2000000;
   if(!/\.github\.io$/i.test(location.hostname)) return;
   var ok=false; try{ ok=localStorage.getItem('siteAuth')===HASH; }catch(e){}
   if(ok) return;
   document.documentElement.classList.add('locked');
-  async function sha(s){ var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SALT+s)); return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join(''); }
+  // PBKDF2 with many rounds makes every guess slow (about half a second), so trying all passwords takes hours instead of seconds.
+  async function sha(s){ var enc=new TextEncoder(); var k=await crypto.subtle.importKey('raw',enc.encode(s),'PBKDF2',false,['deriveBits']);
+    var b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:enc.encode(SALT),iterations:ITER},k,256);
+    return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join(''); }
   document.addEventListener('DOMContentLoaded',function(){
     var g=document.createElement('div'); g.id='gate';
     g.innerHTML='<form><h1>ארכיון בחינות מכניקה</h1><label for="gpw">כדי להיכנס, הקלידו סיסמה</label><input id="gpw" type="password" autocomplete="current-password" required><button type="submit">כניסה</button><p class="err" aria-live="polite"></p></form>';
@@ -198,7 +201,8 @@ html.locked body>*:not(#gate){display:none!important}
     var f=g.querySelector('form'), inp=g.querySelector('input'), err=g.querySelector('.err');
     inp.focus();
     f.addEventListener('submit',async function(e){ e.preventDefault();
-      var h=await sha(inp.value);
+      var btn=f.querySelector('button'); btn.disabled=true; btn.textContent='בודק…'; err.textContent='';
+      var h=await sha(inp.value); btn.disabled=false; btn.textContent='כניסה';
       if(h===HASH){ try{localStorage.setItem('siteAuth',HASH);}catch(x){} g.remove(); document.documentElement.classList.remove('locked'); window.dispatchEvent(new Event('resize')); }
       else { err.textContent='סיסמה שגויה'; inp.select(); }
     });
