@@ -61,10 +61,10 @@ window.AUDIO_FILES = {
         "file": "audio/2023a-86-5.mp3?v=7dd1e535"
     },
     "2023a-87-1": {
-        "hash": "8663e17d",
+        "hash": "8e6dfc57",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2023a-87-1.mp3?v=8663e17d"
+        "file": "audio/2023a-87-1.mp3?v=8e6dfc57"
     },
     "2023a-87-2": {
         "hash": "fbfa481a",
@@ -127,10 +127,10 @@ window.AUDIO_FILES = {
         "file": "audio/2023b-86-1.mp3?v=434e7a1d"
     },
     "2023b-86-2": {
-        "hash": "7caf7216",
+        "hash": "4d7b76e4",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2023b-86-2.mp3?v=7caf7216"
+        "file": "audio/2023b-86-2.mp3?v=4d7b76e4"
     },
     "2023b-86-3": {
         "hash": "bc95cb87",
@@ -211,10 +211,10 @@ window.AUDIO_FILES = {
         "file": "audio/2023b-93-5.mp3?v=1182078a"
     },
     "2023c-81-1": {
-        "hash": "0cea1c40",
+        "hash": "642c24e9",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2023c-81-1.mp3?v=0cea1c40"
+        "file": "audio/2023c-81-1.mp3?v=642c24e9"
     },
     "2023c-81-2": {
         "hash": "436a6800",
@@ -241,10 +241,10 @@ window.AUDIO_FILES = {
         "file": "audio/2023c-81-5.mp3?v=d2c09660"
     },
     "2024a-81-1": {
-        "hash": "c71f9101",
+        "hash": "7c81f424",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2024a-81-1.mp3?v=c71f9101"
+        "file": "audio/2024a-81-1.mp3?v=7c81f424"
     },
     "2024a-81-2": {
         "hash": "4caa974c",
@@ -319,10 +319,10 @@ window.AUDIO_FILES = {
         "file": "audio/2024a-95-3.mp3?v=28d999f6"
     },
     "2024a-95-4": {
-        "hash": "c8aceafb",
+        "hash": "556e2c8a",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2024a-95-4.mp3?v=c8aceafb"
+        "file": "audio/2024a-95-4.mp3?v=556e2c8a"
     },
     "2024a-95-5": {
         "hash": "f684b6f4",
@@ -331,16 +331,16 @@ window.AUDIO_FILES = {
         "file": "audio/2024a-95-5.mp3?v=f684b6f4"
     },
     "2024b-83-1": {
-        "hash": "2e36a457",
+        "hash": "b5deac3f",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2024b-83-1.mp3?v=2e36a457"
+        "file": "audio/2024b-83-1.mp3?v=b5deac3f"
     },
     "2024b-83-2": {
-        "hash": "ec408837",
+        "hash": "93e62414",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2024b-83-2.mp3?v=ec408837"
+        "file": "audio/2024b-83-2.mp3?v=93e62414"
     },
     "2024b-83-3": {
         "hash": "b8f2ec98",
@@ -463,10 +463,10 @@ window.AUDIO_FILES = {
         "file": "audio/2024c-93-2.mp3?v=8aa16457"
     },
     "2024c-93-3": {
-        "hash": "d477b5cc",
+        "hash": "2a41c1bb",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2024c-93-3.mp3?v=d477b5cc"
+        "file": "audio/2024c-93-3.mp3?v=2a41c1bb"
     },
     "2024c-93-4": {
         "hash": "b17691a3",
@@ -481,22 +481,22 @@ window.AUDIO_FILES = {
         "file": "audio/2024c-93-5.mp3?v=18263dbe"
     },
     "2026b-84-1": {
-        "hash": "5462bb50",
+        "hash": "b2b14d39",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2026b-84-1.mp3?v=5462bb50"
+        "file": "audio/2026b-84-1.mp3?v=b2b14d39"
     },
     "2026b-84-2": {
-        "hash": "e80ef395",
+        "hash": "32c24568",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2026b-84-2.mp3?v=e80ef395"
+        "file": "audio/2026b-84-2.mp3?v=32c24568"
     },
     "2026c-84-1": {
-        "hash": "0c5cb13e",
+        "hash": "81bbe7dd",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2026c-84-1.mp3?v=0c5cb13e"
+        "file": "audio/2026c-84-1.mp3?v=81bbe7dd"
     },
     "2026c-84-2": {
         "hash": "4796e064",
@@ -511,10 +511,10 @@ window.AUDIO_FILES = {
         "file": "audio/2026c-84-3.mp3?v=c307f5e4"
     },
     "2026c-84-4": {
-        "hash": "1d0c5ea6",
+        "hash": "ea9e4785",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
-        "file": "audio/2026c-84-4.mp3?v=1d0c5ea6"
+        "file": "audio/2026c-84-4.mp3?v=ea9e4785"
     },
     "2026c-84-5": {
         "hash": "337113fa",
