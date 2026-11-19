@@ -173,6 +173,38 @@ footer{border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
 footer .wrap{padding-block:22px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
+<style>
+html.locked body>*:not(#gate){display:none!important}
+#gate{min-height:100vh;display:grid;place-items:center;padding:16px;background:var(--paper)}
+#gate form{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:28px 24px;width:min(360px,100%);display:grid;gap:12px;text-align:center;font-family:Assistant,system-ui,sans-serif;color:var(--ink)}
+#gate h1{margin:0;font:900 26px "Frank Ruhl Libre",serif;color:var(--accent)}
+#gate input{font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--sheet);color:var(--ink);text-align:center}
+#gate button{font:inherit;font-weight:700;font-size:16px;padding:10px;border:0;border-radius:8px;background:var(--accent);color:var(--sheet);cursor:pointer}
+#gate .err{color:#c0392b;font-size:14px;min-height:1.2em;margin:0}
+</style>
+<script>
+// Simple password screen for the public site. It only hides the page: the files themselves stay reachable by direct link.
+(function(){
+  var HASH='dbbd7734374d7be7a2c356da48bce13138c566f13c88948640565ab57463bd76', SALT='mech20215:';
+  if(!/\.github\.io$/i.test(location.hostname)) return;
+  var ok=false; try{ ok=localStorage.getItem('siteAuth')===HASH; }catch(e){}
+  if(ok) return;
+  document.documentElement.classList.add('locked');
+  async function sha(s){ var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(SALT+s)); return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join(''); }
+  document.addEventListener('DOMContentLoaded',function(){
+    var g=document.createElement('div'); g.id='gate';
+    g.innerHTML='<form><h1>ארכיון בחינות מכניקה</h1><label for="gpw">כדי להיכנס, הקלידו סיסמה</label><input id="gpw" type="password" autocomplete="current-password" required><button type="submit">כניסה</button><p class="err" aria-live="polite"></p></form>';
+    document.body.prepend(g);
+    var f=g.querySelector('form'), inp=g.querySelector('input'), err=g.querySelector('.err');
+    inp.focus();
+    f.addEventListener('submit',async function(e){ e.preventDefault();
+      var h=await sha(inp.value);
+      if(h===HASH){ try{localStorage.setItem('siteAuth',HASH);}catch(x){} g.remove(); document.documentElement.classList.remove('locked'); window.dispatchEvent(new Event('resize')); }
+      else { err.textContent='סיסמה שגויה'; inp.select(); }
+    });
+  });
+})();
+</script>
 </head>
 <body>
 
