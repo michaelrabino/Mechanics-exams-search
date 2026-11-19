@@ -480,6 +480,126 @@ window.AUDIO_FILES = {
         "model": "eleven_v4",
         "file": "audio/2024c-93-5.mp3?v=18263dbe"
     },
+    "2025a-83-1": {
+        "hash": "2a784a4d",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-83-1.mp3?v=2a784a4d"
+    },
+    "2025a-83-2": {
+        "hash": "a811bc2e",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-83-2.mp3?v=a811bc2e"
+    },
+    "2025a-83-3": {
+        "hash": "f74757cc",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-83-3.mp3?v=f74757cc"
+    },
+    "2025a-83-4": {
+        "hash": "6ef1547b",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-83-4.mp3?v=6ef1547b"
+    },
+    "2025a-83-5": {
+        "hash": "22bad9be",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-83-5.mp3?v=22bad9be"
+    },
+    "2025a-84-1": {
+        "hash": "9cf52ff5",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-84-1.mp3?v=9cf52ff5"
+    },
+    "2025a-84-2": {
+        "hash": "7b5af0f8",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-84-2.mp3?v=7b5af0f8"
+    },
+    "2025a-84-3": {
+        "hash": "ae002472",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-84-3.mp3?v=ae002472"
+    },
+    "2025a-84-4": {
+        "hash": "ec0cf5c4",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-84-4.mp3?v=ec0cf5c4"
+    },
+    "2025a-84-5": {
+        "hash": "31a1e32d",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-84-5.mp3?v=31a1e32d"
+    },
+    "2025a-93-1": {
+        "hash": "431f72ed",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-93-1.mp3?v=431f72ed"
+    },
+    "2025a-93-2": {
+        "hash": "7ef7bb20",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-93-2.mp3?v=7ef7bb20"
+    },
+    "2025a-93-3": {
+        "hash": "7325e7c6",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-93-3.mp3?v=7325e7c6"
+    },
+    "2025a-93-4": {
+        "hash": "30af47cf",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-93-4.mp3?v=30af47cf"
+    },
+    "2025a-93-5": {
+        "hash": "c0a4d497",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025a-93-5.mp3?v=c0a4d497"
+    },
+    "2025b-85-1": {
+        "hash": "73c6dae6",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-85-1.mp3?v=73c6dae6"
+    },
+    "2025b-85-2": {
+        "hash": "3a8edd21",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-85-2.mp3?v=3a8edd21"
+    },
+    "2025b-85-3": {
+        "hash": "d57b56e0",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-85-3.mp3?v=d57b56e0"
+    },
+    "2025b-85-4": {
+        "hash": "9517f93e",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-85-4.mp3?v=9517f93e"
+    },
+    "2025b-85-5": {
+        "hash": "e1c1eeae",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-85-5.mp3?v=e1c1eeae"
+    },
     "2025b-89-1": {
         "hash": "38f3a9da",
         "voice": "9ztfq2gddPmPeeVe1Jkk",
@@ -491,6 +611,24 @@ window.AUDIO_FILES = {
         "voice": "9ztfq2gddPmPeeVe1Jkk",
         "model": "eleven_v4",
         "file": "audio/2025b-89-2.mp3?v=56ceaba7"
+    },
+    "2025b-89-3": {
+        "hash": "bb88bcaf",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-89-3.mp3?v=bb88bcaf"
+    },
+    "2025b-89-4": {
+        "hash": "c35197e0",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-89-4.mp3?v=c35197e0"
+    },
+    "2025b-89-5": {
+        "hash": "65eb47c8",
+        "voice": "9ztfq2gddPmPeeVe1Jkk",
+        "model": "eleven_v4",
+        "file": "audio/2025b-89-5.mp3?v=65eb47c8"
     },
     "2025b-93-1": {
         "hash": "75c411f7",
